@@ -1,4 +1,5 @@
 class Knight:
+
     def __init__(self, position, status, item, attack, defence):
         self.position = position
         self.status = status
@@ -9,31 +10,20 @@ class Knight:
     def move(direction):
         if self.status == 'ALIVE':
             if direction = 'N':
-                if self.position[0] > 0:
-                    self.position[0] = self.position[0] - 1
-                else:
-                    drown()
+                self.position[0] -= 1
             if direction = 'S':
-                if self.position[0] < 7:
-                    self.position[0] = self.position[0] + 1
-                else:
-                    drown()
+                self.position[0] += 1
             if direction = 'W':
-                if self.position[1] > 0:
-                    self.position[1] = self.position[1] - 1
-                else:
-                    drown()
+                self.position[1] -= 1
             if direction = 'E':
-                if self.position[1] < 7:
-                    self.position[1] = self.position[1] + 1
-                else:
-                    drown()
+                self.position[1] += 1
+        if self.position[0] not in range(8):
+            drown()
+        if self.position[1] not in range(8):
+            drown()
 
-    def pickup():
-        pass
-
-    def drop():
-        pass
+    def pickup(item):
+        self.item = item
 
     def attack():
         pass
