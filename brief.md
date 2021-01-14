@@ -9,10 +9,7 @@ There are four knights who are about to do battle:
 3. GREEN (G)
 4. YELLOW (Y)
 
-Their world consists of an 8x8 square "Arena" which looks suspiciously like a chess-board.
-The Arena is surrounded by water on all sides.
-
-The 64 tiles on the board are identified with (row, col) coordinates with (0,0) being the top left tile and (7,0) being the botten left tile (row 7 col 0).
+Their world consists of an 8x8 square "Arena" which looks suspiciously like a chess-board. The Arena is surrounded by water on all sides. The 64 tiles on the board are identified with (row, col) coordinates with (0,0) being the top left tile and (7,0) being the botten left tile (row 7 col 0).
 
 Each knight starts in one corner of the board:
 1. R (0,0) (top left)
@@ -34,12 +31,8 @@ They start in the following locations:
 3. Dagger (D) (2,5)
 4. Helmet (H) (5,5)
 
-If a Knight moves onto a tile with an item they are immediately equipped with that item, gaining the bonus.
-A knight may only hold one item.
-If a knight moves onto a tile which has two items on it then they pick up the best item in this order: (A, M, D, H).
-Knights will pick up an item on a tile before fighting any enemies on that tile.
-Knights that die in battle drop their item (if they have one).
-Knights that drown throw their item to the bank before sinking down to Davy Jones' Locker - the item is left on the last valid tile.
+If a Knight moves onto a tile with an item they are immediately equipped with that item, gaining the bonus. A knight may only hold one item. If a knight moves onto a tile which has two items on it then they pick up the best item in this order: (A, M, D, H). Knights will pick up an item on a tile before fighting any enemies on that tile.
+Knights that die in battle drop their item (if they have one). Knights that drown throw their item to the bank before sinking down to Davy Jones' Locker - the item is left on the last valid tile.
 
 ### Movement
 
@@ -49,9 +42,7 @@ Each knight moves one tile at a time in one of four directions:
 3. South (S) (DOWN)
 4. West (W) (LEFT)
 
-If a knight moves off the board then they are swept away and drown immediately.
-Further moves do not apply to DROWNED knights.
-The final position of a DROWNED knight is null.
+If a knight moves off the board then they are swept away and drown immediately. Further moves do not apply to DROWNED knights. The final position of a DROWNED knight is null.
 
 ### Fighting
 
@@ -59,8 +50,7 @@ Each knight has a base attack and defence score of 1:
 * Attack (1)
 * Defence (1)
 
-If one knight moves onto the tile of another knight then they will attack.
-The knight already on the tile will defend.
+If one knight moves onto the tile of another knight then they will attack. The knight already on the tile will defend.
 
 The outcome of a fight it determined as follows:
 * The attacker takes their base attack score and adds any item modifiers.
@@ -69,11 +59,7 @@ The outcome of a fight it determined as follows:
 * The attacker's final attack score is compared to the defender's final defence score.
 * The higher score wins, the losing knight dies.
 
-DEAD knights drop any equipped items immediately.
-Further moves do not apply to DEAD knights.
-The final position of a DEAD knight is the tile that they die on.
-
-A DEAD or DROWNED knight has attack 0 and defence 0.
+DEAD knights drop any equipped items immediately. Further moves do not apply to DEAD knights. The final position of a DEAD knight is the tile that they die on. A DEAD or DROWNED knight has attack 0 and defence 0.
 
 ### Game
 
@@ -121,6 +107,7 @@ _ _ _ _ _ _ _ (y)
 ### Instructions
 
 Your code should open a file called `moves.txt` and, if the contents are a valid set of moves, determine the final state of the board.
+
 The output should be a JSON file called `final_state.json` with the following information:
 * Position of the knights
 * Status of the kights (LIVE, DEAD, DROWNED)
