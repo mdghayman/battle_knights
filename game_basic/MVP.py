@@ -29,7 +29,7 @@ D = Item('dagger', 1, 0, 20, [2,5], False)
 H = Item('helmet', 0, 1, 10, [5,5], False)
 items = [A, M, D, H]
 
-moves = ['R:S', 'R:S', 'B:E', 'G:N', 'Y:N']
+moves = open('moves.txt').read().split('\n')[1:-2]
 
 for move in moves:
     for knight in knights:
