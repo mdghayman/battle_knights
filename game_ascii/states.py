@@ -1,30 +1,5 @@
 from setup import knights, items
 
-def game_state():
-    game_state = {}
-    for knight in knights:
-        for item in items:
-            if knight.item == item:
-                weapon = item
-        game_state[knight.name] = [knight.position,
-                                knight.status,
-                                weapon.name,
-                                knight.attack + weapon.attack,
-                                knight.defence + weapon.defence]
-    for item in items:
-        holder = item.holder
-        if holder is None:
-            item.holder = 'No'
-        else:
-            item.holder = 'Yes'
-            item.position = holder.position
-
-        game_state[item.name] = [item.position,
-                                item.holder]
-    print('{')
-    for key, value in game_state.items():
-        print(f'"{key}":', value)
-    print('}')
 
 def board_state():
 
@@ -47,3 +22,36 @@ def board_state():
 
     for line in board:
         print('|'.join(line))
+
+
+def game_state():
+
+    game_state = {}
+
+    for knight in knights:
+        if knight.item is None:
+            game_state[knight.name] = [knight.position,
+                                    knight.status,
+                                    None,
+                                    knight.attack,
+                                    knight.defence]
+        else:
+            game_state[knight.name] = [knight.position,
+                                    knight.status,
+                                    knight.item.name,
+                                    knight.attack + knight.item.attack,
+                                    knight.defence + knight.item.defence]
+
+    for item in items:
+        holder = item.holder
+        if holder is None:
+            item.holder = 'No'
+        else:
+            item.holder = 'Yes'
+        game_state[item.name] = [item.position,
+                                item.holder]
+
+    print('{')
+    for key, value in game_state.items():
+        print(f'"{key}":', value)
+    print('}')
