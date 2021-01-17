@@ -1,113 +1,66 @@
-from instances import knights, items
-from art import art
-from time import sleep
 from os import system
+from time import sleep
+from art import art
+from setup import knights, items
+from move_details import move_details
+from states import board_state, game_state
 
-art_cases = art()
-
-board = [[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' '],
-[' ',' ',' ',' ',' ',' ',' ',' ']]
-
-def move_details(move):
-    for knight in knights:
-        if move[0] == knight.code:
-            mover = knight
-    direction = move[2]
-    if mover.status == 'ALIVE':
-        if direction == 'N':
-            mover.position[0] -= 1
-        if direction == 'S':
-            mover.position[0] += 1
-        if direction == 'W':
-            mover.position[1] -= 1
-        if direction == 'E':
-            mover.position[1] += 1
-        if mover.position[0] not in range(8) or mover.position[1] not in range(8):
-            mover.status = 'DROWNED'
-            mover.position = None
-    for defender in knights:
-        if defender != mover:
-            if defender.position == mover.position:
-                total_attack = mover.attack + 0.5
-                for item in items:
-                    if mover.item == item:
-                        total_attack += item.attack
-                total_defence = defender.defence
-                for item in items:
-                    if defender.item == item:
-                        total_defence += item.defence
-                if total_attack > total_defence:
-                    defender.status = 'DEAD'
-                else:
-                    attacker.status = 'ALIVE'
-    for loot in items:
-        if loot.equipped == 'No':
-            if loot.position == mover.position:
-                if mover.item == None or mover.item.value < loot.value:
-                    mover.item = loot
-                    loot.equipped = True
-
-
-def game_state():
-    game_state = {}
-    for knight in knights:
-        game_state[knight.name] = [knight.position,
-                                knight.status,
-                                knight.item,
-                                knight.attack,
-                                knight.defence]
-    for item in items:
-        game_state[item.name] = [item.position,
-                                item.equipped]
-    print('{')
-    sleep(.2)
-    for key, value in game_state.items():
-        print(f'"{key}":', value)
-        sleep(.2)
-    print('}')
-
-
-def board_state():
-    for item in items:
-        board[item.position[0]][item.position[1]] = item.code
-
-    for knight in knights:
-        if knight.status == 'ALIVE':
-            board[knight.position[0]][knight.position[1]] = knight.code
-
-    for line in board:
-        print('|'.join(line))
-
+for item in ['A','D','M','H']:
+    system('clear')
+    print('\nWELCOME TO BATTLE KNIGHTS!\n')
+    board_state()
+    print('\n')
+    for line in art()[item]:
+        print(line)
+        sleep(0.02)
+    sleep(1)
 
 moves = open('moves.txt').read().split('\n')[1:-2]
 
 turn = 1
 
-print('\nWelcome to Battle Knights!')
-sleep(.5)
-print('\nStarting board:\n')
-board_state()
-
 for move in moves:
-    sleep(2)
+    for knight in knights:
+        if knight.code == move[0]:
+            mover = knight
+    direction_code = move[2]
     system('clear')
+    weapon_start = mover.item
     move_details(move)
-    sleep(.5)
-    print(f'\nTurn {str(turn)}:')
-    sleep(.5)
-    for key, value in art_cases.items():
-        if move[0] == key:
-            print(value)
-            print(f'{move[0]} knight moves {move[2]}...\n')
-    sleep(.5)
+    weapon_end = mover.item
+    print(f'\nTURN {str(turn)}:\n')
     board_state()
+    for key,value in {'N':'North','S':'South','E':'East','W':'West'}.items():
+        if key == move[2]:
+            bearing = value
+    for key, value in art().items():
+        if key == move[0] + move[2]:
+            print(f'\n{mover.name.capitalize()} knight moves {bearing}.\n')
+            for letter in value:
+                sleep(0.02)
+                print(letter)
+            sleep(1)
+    if mover.status == 'DROWNED':
+        system('clear')
+        print(f'\nTurn {str(turn)}:\n')
+        board_state()
+        print(f'\n{mover.name.capitalize()} knight drowns!\n')
+        for letter in art()['DROWNED']:
+            sleep(0.02)
+            print(letter)
+        sleep(1)
+    if weapon_start != weapon_end:
+        system('clear')
+        print(f'\nTurn {str(turn)}:\n')
+        board_state()
+        print(f'\n{mover.name.capitalize()} knight picks up {weapon_end.name}!\n')
+        for letter in art()[weapon_end.code]:
+            sleep(0.02)
+            print(letter)
+        sleep(1)
     turn += 1
 
-sleep(.5)
-print('\nGame over!\n')
+system('clear')
+print('\nGAME OVER!\n')
+print('Final game state:\n')
+game_state()
