@@ -1,6 +1,8 @@
 from setup import knights, items
 
 def art():
+# ASCII art for knights, items, and actions.
+# These are printed when triggered by run.py.
 
     art = {}
 

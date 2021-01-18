@@ -51,7 +51,4 @@ def game_state():
         game_state[item.name] = [item.position,
                                 item.holder]
 
-    print('{')
-    for key, value in game_state.items():
-        print(f'"{key}":', value)
-    print('}')
+    return game_state

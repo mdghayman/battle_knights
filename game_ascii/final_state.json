@@ -1,12 +1,10 @@
-from state import A, M, D, H, R, B, G, Y
-
 {
-  "red": [R.position, R.status, R.item, R.attack, R.defence],
-  "blue": [B.position, B.status, B.item, B.attack, B.defence],
-  "green": [G.position, G.status, G.item, G.attack, G.defence],
-  "yellow": [Y.position, Y.status, Y.item, Y.attack, Y.defence],
-  "magic_staff": [M.position, M.equipped],
-  "helmet": [H.position, H.equipped],
-  "dagger": [D.position, D.equipped],
-  "axe": [A.position, A.equipped]
+    "Red": [[0, 0], 'ALIVE', None, 1, 1],
+    "Blue": [[7, 0], 'ALIVE', None, 1, 1],
+    "Green": [[7, 7], 'ALIVE', None, 1, 1],
+    "Yellow": [[0, 7], 'ALIVE', None, 1, 1],
+    "Axe": [[2, 2], 'No'],
+    "Magic Staff": [[5, 2], 'No'],
+    "Dagger": [[2, 5], 'No'],
+    "Helmet": [[5, 5], 'No'],
 }
