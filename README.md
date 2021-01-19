@@ -9,8 +9,6 @@
 
 ### Introduction
 
-This README details how to use the code in this package, to determine the output of an instruction file.
-
 This repository contains two versions of Battling Knights:
 1. Simple game: A single file `MVP.py`, which uses the input file `moves.txt`. This final game state is output to the command line, and is also written to the file `final_state.json` which is then opened by the code.
 2. ASCII art game: Several Python files, which are executed through the file `run.py`. This illustrates the game turn by turn, in the command line, with a diagram of the board and ASCII art of actions. The final game state is output to the command line, and is also written to the file `final_state.json` which is then opened by the code.
