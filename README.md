@@ -4,7 +4,7 @@
 
 ### Summary
 
-* To execute a simple version of the game, and view the final output: run the file `MVP.py`.
+* To execute a simple version of the game, and view the final output: run the file `MVP.py` (minimum viable product).
 * To execute an ASCII art version of the game, with turn by turn illustration, and view the final output: run the file `run.py`.
 
 ### Introduction
