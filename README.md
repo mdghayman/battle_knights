@@ -1,6 +1,6 @@
-# Bboxx
+# Battle Knights
 
-## Bboxx Coding Challenge: Battling Knights
+## Coding Challenge: Battling Knights
 
 ### Summary
 
